@@ -8,6 +8,10 @@ using System.Windows.Forms;
 
 namespace TesteDataGridEInterfacesVisuais
 {
+    /// <summary>
+    /// Aqui ficam as variáveis "globais" que o BatalhaNaval precisa usar para muitas das implementações menos elegantes.
+    /// <br>Não é bonito, e provavelmente não é seguro, mas tá ok pra um joguinho pequeno.</br>
+    /// </summary>
     public static class GlbVar
     {
         /// <summary>
