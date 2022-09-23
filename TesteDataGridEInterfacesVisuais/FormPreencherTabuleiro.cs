@@ -15,16 +15,19 @@ using TesteDataGridEInterfacesVisuais.Properties;
 
 namespace TesteDataGridEInterfacesVisuais
 {
-    public partial class Form1 : Form
+    public partial class FormPreencherTabuleiro : Form
     {
-        public Form1()
+        public FormPreencherTabuleiro()
         {
             InitializeComponent();
+
 
             //Inicializar o DGV (interface visual), a matriz (dados reais) e o dicionário dentro da classe BatalhaNaval
             BatalhaNaval.InicializarDGV(dgv);
             BatalhaNaval.InicializaTabuleiro(ref GlbVar.matrizJogador);
+            BatalhaNaval.InicializaTabuleiro(ref GlbVar.matrizOponente);
             InicializaDicionarioBotoes();
+
         }
 
         /// <summary>
@@ -33,6 +36,7 @@ namespace TesteDataGridEInterfacesVisuais
         /// </summary>
         private void InicializaDicionarioBotoes()
         {
+            GlbVar.dicBotoes.Clear();
             GlbVar.dicBotoes.Add(2, btnDestroier);
             GlbVar.dicBotoes.Add(3, btnEncouracado);
             GlbVar.dicBotoes.Add(4, btnCruzador);
@@ -143,10 +147,16 @@ namespace TesteDataGridEInterfacesVisuais
             bool flag = BatalhaNaval.ChecarCondicoesInicio();
             if (flag)
             {
+                BatalhaNaval.PreencheTabuleiroOponente(ref GlbVar.matrizOponente);
+
+                FormJogar formJogar = new FormJogar();
+                formJogar.ShowDialog();
+                this.Close();           //?
                 //começar jogo :)
             }
             else
             {
+                MessageBox.Show("Coloque todos os seus barcos!", "Ainda há barcos!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 //não começar jogo :(
             }
         }

@@ -1,6 +1,6 @@
 ﻿namespace TesteDataGridEInterfacesVisuais
 {
-    partial class Form1
+    partial class FormPreencherTabuleiro
     {
         /// <summary>
         /// Required designer variable.
@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPreencherTabuleiro));
             this.dgv = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnDestroier = new System.Windows.Forms.Button();
             this.btnEncouracado = new System.Windows.Forms.Button();
             this.btnCruzador = new System.Windows.Forms.Button();
             this.btnPortaAvioes = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -51,8 +51,12 @@
             this.dgv.AllowUserToResizeColumns = false;
             this.dgv.AllowUserToResizeRows = false;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv.ColumnHeadersVisible = false;
             this.dgv.Location = new System.Drawing.Point(86, 80);
+            this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
+            this.dgv.ReadOnly = true;
+            this.dgv.RowHeadersVisible = false;
             this.dgv.RowHeadersWidth = 32;
             this.dgv.RowTemplate.Height = 32;
             this.dgv.Size = new System.Drawing.Size(536, 448);
@@ -85,15 +89,6 @@
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "selected.bmp");
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::TesteDataGridEInterfacesVisuais.Properties.Resources.selected;
-            this.pictureBox1.Location = new System.Drawing.Point(228, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
             // 
             // btnDestroier
             // 
@@ -145,7 +140,16 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // Form1
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::TesteDataGridEInterfacesVisuais.Properties.Resources.selected;
+            this.pictureBox1.Location = new System.Drawing.Point(228, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
+            // FormPreencherTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -160,7 +164,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgv);
             this.KeyPreview = true;
-            this.Name = "Form1";
+            this.Name = "FormPreencherTabuleiro";
             this.Text = "Form1";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();

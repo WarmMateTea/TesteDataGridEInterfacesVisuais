@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,10 +18,38 @@ namespace TesteDataGridEInterfacesVisuais
     /// </summary>
     public static class BatalhaNaval
     {
-
-
         /// <summary>
         /// Deve ser chamado no onLoad ou construtor do form onde os barcos são posicionados.
+        /// Inicializa e preenche aleatoriamente um array bidimensional de TabuleiroCasa já criado, para o oponente jogar
+        /// <para>Recebe o ponteiro para essa matriz</para>
+        /// <para>Depende das globais paramQtdSelecao e paramRotacao</para>
+        /// </summary>
+        /// <param name="matriz"></param>
+        public static void PreencheTabuleiroOponente(ref TabuleiroCasa[,] matriz)
+        {
+            Par p = new Par(0, 0);
+            Random r = new Random();    
+            for (int i = 2; i <= 5; )
+            {
+                //Coloca os 4 tipos de barco (2-5 casas cada)
+                GlbVar.paramQtdSelecao = i;
+                //Randomiza a rotação no posicionamento
+                GlbVar.paramRotacao = r.Next(0, 2);
+                //Randomiza a posição selecionada
+                p.RowIndex = r.Next(0, 10);
+                p.ColumnIndex = r.Next(0, 10);
+
+                //Se o posicionamento não for bem-sucedido (por quaisquer motivos), i não é incrementado e o barco tenta ser posicionado novamente
+                if (MatrixUpdater_Clique(p, matriz))
+                    i++;
+            }
+            //Reseta as globais para seus padrões. Talvez uma prop para elas fosse mais adequada desde o começo, talvez eu revise depois.
+            GlbVar.paramQtdSelecao = 2;
+            GlbVar.paramRotacao = 0;
+        }
+
+        /// <summary>
+        /// Deve ser chamado no onLoad ou construtor do form onde os barcos são posicionados, e depois no form de jogo em si, para cada DGV.
         /// Inicializa um array bidimensional de TabuleiroCasa já criado
         /// <br>Inicializa com os seguintes valores: estado: não atingido, tipoBarco: nenhum barco, orientacao e tipoSprite = 0; </br>
         /// <para>Recebe o ponteiro para essa matriz</para>
@@ -241,27 +270,6 @@ namespace TesteDataGridEInterfacesVisuais
 
 
         /// <summary>
-        /// Edita a matriz que recebeu um tiro.
-        /// <br>Recebe um Par e, que representa a posição do tiro no tabuleiro, e recebe a matriz onde vai colocar o tiro.</br>
-        /// </summary>
-        /// <param name="e"></param>
-        /// <param name="matriz"></param>
-        /// <returns>Retorna verdadeiro caso o tiro acerte um barco, e falso caso contrário.</returns>
-        public static bool TiroMatriz(Par e, TabuleiroCasa[,] matriz)
-        {
-            int rowindex = e.RowIndex;
-            int columnindex = e.ColumnIndex;
-
-            if (rowindex > 9 || rowindex < 0 || columnindex > 9 || columnindex < 0) { return false; }       // .... just in case.
-
-            TabuleiroCasa casa = matriz[rowindex, columnindex];
-
-            casa.Estado = 1;
-            return (casa.TipoBarco != 0) ? true : false;
-        }
-
-
-        /// <summary>
         /// !!! DEVE SER INVOCADA A PARTIR DE UM EVENTO KeyDown VINDO DO FORM DE MONTAR O TABULEIRO !!!
         /// <para>Recebe a tecla pressionada. Se for 'R', efetua a rotação para posicionar o barco no tabuleiro.</para>
         /// <br>Recebe também o DGV onde está o tabuleiro do jogador. </br>
@@ -370,6 +378,10 @@ namespace TesteDataGridEInterfacesVisuais
                 GlbVar.dicBotoes[GlbVar.paramQtdSelecao].Enabled = false;         //desabilitar botões também. aqui o dicionário pode ser bem útil...
                 GlbVar.paramQtdSelecao = 0;
             }
+            else
+            {
+                return false;
+            }
             return true;
         }
 
@@ -397,5 +409,96 @@ namespace TesteDataGridEInterfacesVisuais
             }
         }
 
+        /* Seção para funções usadas exclusivamente enqaunto o jogador está jogando, após se preparar
+         *
+         */
+
+        /// <summary>
+        /// Edita a matriz que recebeu um tiro.
+        /// <br>Recebe um Par e, que representa a posição do tiro no tabuleiro, e recebe a matriz onde vai colocar o tiro.</br>
+        /// </summary>
+        /// <param name="e"></param>
+        /// <param name="matriz"></param>
+        /// <returns>Retorna verdadeiro caso o tiro acerte um barco, e falso caso contrário.</returns>
+        public static bool TiroMatriz(Par e, TabuleiroCasa[,] matriz)
+        {
+            int rowindex = e.RowIndex;
+            int columnindex = e.ColumnIndex;
+
+            if (rowindex > 9 || rowindex < 0 || columnindex > 9 || columnindex < 0) { return false; }       // .... just in case.
+
+            TabuleiroCasa casa = matriz[rowindex, columnindex];
+
+            casa.Estado = 1;
+            return (casa.TipoBarco != 0) ? true : false;
+        }
+
+
+        /// <summary>
+        /// Atualiza o display do DGV de acordo com a configuração de cada casa da matriz recebida.
+        /// <para>Recebe o DGV a ser modificado, e a matriz de onde puxar os dados.</para>
+        /// </summary>
+        /// <param name="dgv"></param>
+        /// <param name="matriz"></param>
+        public static void UpdateDGVTotal(DataGridView dgv, TabuleiroCasa[,] matriz)
+        {
+            for (int i = 0; i < matriz.GetLength(0); i++)
+            {
+                for(int j = 0; j < matriz.GetLength(1); j++)
+                {
+                    dgv.Rows[i].Cells[j].Value = matriz[i, j].DeterminarSprite();
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Atualiza o display do DGV do tabuleiro apenas na posição do último tiro dado.
+        /// <para>Recebe o DGV a ser modificado, a matriz de onde puxar os dados, e a posição do último tiro.</para>
+        /// </summary>
+        /// <param name="dgv"></param>
+        /// <param name="p"></param>
+        public static void UpdateDGVTiroUnico(DataGridView dgv, TabuleiroCasa[,] matriz, Par p)
+        {
+            dgv.Rows[p.RowIndex].Cells[p.ColumnIndex].Value = matriz[p.RowIndex, p.ColumnIndex].DeterminarSprite();
+        }
+
+
+        /// <summary>
+        /// Recebe um DGV e inicializa ele com o sprite de selectedBG, como névoa de guerra.
+        /// <br>Normalmente chamado para o tabuleiro do oponente, antes de iniciar o jogo.</br>
+        /// <para>Recebe o DGV a ser atualizado, e a matriz correspondente (para pegar as dimensões)</para>
+        /// </summary>
+        /// <param name="dgv"></param>
+        public static void UpdateDGVFogOfWar(DataGridView dgv, TabuleiroCasa[,] matriz)
+        {
+            for (int i = 0; i < matriz.GetLength(0);i++)
+            {
+                for (int j = 0; j < matriz.GetLength(1); j++)
+                {
+                    dgv.Rows[i].Cells[j].Value = GlbVar.selectedBG;
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Checa se o tabuleiro recebido perdeu todos os barcos.
+        /// </summary>
+        /// <para>Recebe a matriz (tabuleiro) a ser verificada</para>
+        /// <param name="matriz"></param>
+        /// <returns>True se o tabuleiro recebido tiver perdido todos os barcos, False caso contrário</returns>
+        public static bool ChecarFimDeJogo(TabuleiroCasa[,] matriz)
+        {
+            for (int i = 0; i < matriz.GetLength(0); i++)
+            {
+                for (int j = 0; j < matriz.GetLength(1); j++)
+                {
+                    if (matriz[i, j].TipoBarco != 0 && matriz[i, j].Estado == 0)  //Significa que há um barco, e ele não está afundado
+                        return false;
+                }
+            }
+            return true;
+        }
     }
 }
