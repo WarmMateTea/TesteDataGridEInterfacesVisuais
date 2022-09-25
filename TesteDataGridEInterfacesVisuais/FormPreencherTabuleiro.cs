@@ -23,11 +23,14 @@ namespace TesteDataGridEInterfacesVisuais
 
 
             //Inicializar o DGV (interface visual), a matriz (dados reais) e o dicionário dentro da classe BatalhaNaval
-            BatalhaNaval.InicializarDGV(dgv);
+            dgv.Enabled = false;
             BatalhaNaval.InicializaTabuleiro(ref GlbVar.matrizJogador);
             BatalhaNaval.InicializaTabuleiro(ref GlbVar.matrizOponente);
+            BatalhaNaval.InicializarDGV(dgv);
             InicializaDicionarioBotoes();
 
+            PreencheComboBox();
+            dgv.Enabled = true;
         }
 
         /// <summary>
@@ -75,6 +78,8 @@ namespace TesteDataGridEInterfacesVisuais
         private void dgv_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
         {
             BatalhaNaval.DGV_VisualUpdater_Saida(new Par(e.RowIndex, e.ColumnIndex), GlbVar.matrizJogador, sender as DataGridView);
+            GlbVar.lastIndex.RowIndex = -1;
+            GlbVar.lastIndex.ColumnIndex = -1;
         }
 
         /// <summary>
@@ -144,12 +149,45 @@ namespace TesteDataGridEInterfacesVisuais
         /// <param name="e"></param>
         private void btnStart_Click(object sender, EventArgs e)
         {
+            if (rbtnSelecionar.Checked)
+            {
+                if (cboxSelecionarUsuario.SelectedItem == null)
+                {
+                    Jogador anon = new Jogador("Anônimo");
+                    GlbVar.jogadores.Add(anon);
+                    GlbVar.jogadorSelecionado = anon;
+                }
+                else
+                    GlbVar.jogadorSelecionado = (Jogador)cboxSelecionarUsuario.SelectedItem;    //???
+            }
+            else      // Usuário anônimo
+            {
+                bool flagHaAnonimo = false;
+                foreach(Jogador jogador in GlbVar.jogadores)
+                {
+                    if (jogador.Nome == "Anônimo")
+                    {
+                        GlbVar.jogadorSelecionado = jogador;
+                        flagHaAnonimo = true;
+                        break;
+                    }
+                }
+                if (!flagHaAnonimo)
+                {
+                    Jogador anon = new Jogador("Anônimo");
+                    GlbVar.jogadores.Add(anon);
+                    GlbVar.jogadorSelecionado = anon;
+                }
+            }
+
+
             bool flag = BatalhaNaval.ChecarCondicoesInicio();
             if (flag)
             {
                 BatalhaNaval.PreencheTabuleiroOponente(ref GlbVar.matrizOponente);
 
                 FormJogar formJogar = new FormJogar();
+                this.Hide();
                 formJogar.ShowDialog();
                 this.Close();           //?
                 //começar jogo :)
@@ -161,5 +199,26 @@ namespace TesteDataGridEInterfacesVisuais
             }
         }
 
+        private void rbtnSelecaoUsuario_CheckedChanged(object sender, EventArgs e)
+        {
+            PreencheComboBox();
+            if (rbtnSelecionar.Checked)
+            {
+                cboxSelecionarUsuario.Enabled = true;
+            }
+            else
+            {
+                cboxSelecionarUsuario.Enabled = false;
+            }
+        }
+
+        private void PreencheComboBox() ////aAAAAAAAAAAAAAAAAA
+        {
+            cboxSelecionarUsuario.Items.Clear();
+            foreach(Jogador jogador in GlbVar.jogadores)
+            {
+                cboxSelecionarUsuario.Items.Add(jogador);
+            }
+        }
     }
 }

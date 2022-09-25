@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteDataGridEInterfacesVisuais", "TesteDataGridEInterfacesVisuais\TesteDataGridEInterfacesVisuais.csproj", "{0013EC56-84F2-483A-8D07-FB94A6A65FF5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JogoBatalhaNaval", "TesteDataGridEInterfacesVisuais\JogoBatalhaNaval.csproj", "{0013EC56-84F2-483A-8D07-FB94A6A65FF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

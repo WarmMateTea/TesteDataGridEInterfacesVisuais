@@ -39,6 +39,9 @@
             this.btnCruzador = new System.Windows.Forms.Button();
             this.btnPortaAvioes = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
+            this.rbtnSelecionar = new System.Windows.Forms.RadioButton();
+            this.rbtnAnonimo = new System.Windows.Forms.RadioButton();
+            this.cboxSelecionarUsuario = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -50,7 +53,8 @@
             this.dgv.AllowUserToDeleteRows = false;
             this.dgv.AllowUserToResizeColumns = false;
             this.dgv.AllowUserToResizeRows = false;
-            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv.ColumnHeadersHeight = 32;
+            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv.ColumnHeadersVisible = false;
             this.dgv.Location = new System.Drawing.Point(86, 80);
             this.dgv.MultiSelect = false;
@@ -140,6 +144,40 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
+            // rbtnSelecionar
+            // 
+            this.rbtnSelecionar.AutoSize = true;
+            this.rbtnSelecionar.Location = new System.Drawing.Point(873, 80);
+            this.rbtnSelecionar.Name = "rbtnSelecionar";
+            this.rbtnSelecionar.Size = new System.Drawing.Size(143, 20);
+            this.rbtnSelecionar.TabIndex = 10;
+            this.rbtnSelecionar.Text = "Selecionar Usuário";
+            this.rbtnSelecionar.UseVisualStyleBackColor = true;
+            this.rbtnSelecionar.CheckedChanged += new System.EventHandler(this.rbtnSelecaoUsuario_CheckedChanged);
+            // 
+            // rbtnAnonimo
+            // 
+            this.rbtnAnonimo.AutoSize = true;
+            this.rbtnAnonimo.Checked = true;
+            this.rbtnAnonimo.Location = new System.Drawing.Point(1025, 80);
+            this.rbtnAnonimo.Name = "rbtnAnonimo";
+            this.rbtnAnonimo.Size = new System.Drawing.Size(131, 20);
+            this.rbtnAnonimo.TabIndex = 11;
+            this.rbtnAnonimo.TabStop = true;
+            this.rbtnAnonimo.Text = "Usuário Anônimo";
+            this.rbtnAnonimo.UseVisualStyleBackColor = true;
+            this.rbtnAnonimo.CheckedChanged += new System.EventHandler(this.rbtnSelecaoUsuario_CheckedChanged);
+            // 
+            // cboxSelecionarUsuario
+            // 
+            this.cboxSelecionarUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxSelecionarUsuario.Enabled = false;
+            this.cboxSelecionarUsuario.FormattingEnabled = true;
+            this.cboxSelecionarUsuario.Location = new System.Drawing.Point(873, 116);
+            this.cboxSelecionarUsuario.Name = "cboxSelecionarUsuario";
+            this.cboxSelecionarUsuario.Size = new System.Drawing.Size(283, 24);
+            this.cboxSelecionarUsuario.TabIndex = 12;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::TesteDataGridEInterfacesVisuais.Properties.Resources.selected;
@@ -154,6 +192,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1181, 624);
+            this.Controls.Add(this.cboxSelecionarUsuario);
+            this.Controls.Add(this.rbtnAnonimo);
+            this.Controls.Add(this.rbtnSelecionar);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.btnPortaAvioes);
             this.Controls.Add(this.btnCruzador);
@@ -186,6 +227,9 @@
         private System.Windows.Forms.Button btnCruzador;
         private System.Windows.Forms.Button btnPortaAvioes;
         private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.RadioButton rbtnSelecionar;
+        private System.Windows.Forms.RadioButton rbtnAnonimo;
+        private System.Windows.Forms.ComboBox cboxSelecionarUsuario;
     }
 }
 

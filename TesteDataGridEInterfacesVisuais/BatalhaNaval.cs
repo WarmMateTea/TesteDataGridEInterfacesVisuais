@@ -352,6 +352,7 @@ namespace TesteDataGridEInterfacesVisuais
                 Par idx = GlbVar.pilhaMods.Pop();
                 dgv.Rows[idx.RowIndex].Cells[idx.ColumnIndex].Value = matriz[idx.RowIndex, idx.ColumnIndex].DeterminarSprite();
             }
+
             return true;
         }
 
