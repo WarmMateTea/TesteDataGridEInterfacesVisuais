@@ -44,7 +44,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 20;
             this.listBox1.Location = new System.Drawing.Point(11, 91);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(2);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(323, 264);
             this.listBox1.TabIndex = 0;
@@ -53,6 +53,7 @@
             // lblResultadoBusca
             // 
             this.lblResultadoBusca.AutoSize = true;
+            this.lblResultadoBusca.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(188)))), ((int)(((byte)(236)))));
             this.lblResultadoBusca.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblResultadoBusca.Location = new System.Drawing.Point(367, 102);
             this.lblResultadoBusca.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -68,7 +69,7 @@
             this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnBuscar.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnBuscar.Location = new System.Drawing.Point(255, 11);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(80, 30);
             this.btnBuscar.TabIndex = 2;
@@ -81,7 +82,7 @@
             this.txtNomeBusca.BackColor = System.Drawing.SystemColors.Window;
             this.txtNomeBusca.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtNomeBusca.Location = new System.Drawing.Point(77, 11);
-            this.txtNomeBusca.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNomeBusca.Margin = new System.Windows.Forms.Padding(2);
             this.txtNomeBusca.Name = "txtNomeBusca";
             this.txtNomeBusca.Size = new System.Drawing.Size(168, 26);
             this.txtNomeBusca.TabIndex = 3;
@@ -104,7 +105,7 @@
             this.btnListarTodos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnListarTodos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnListarTodos.Location = new System.Drawing.Point(255, 45);
-            this.btnListarTodos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnListarTodos.Margin = new System.Windows.Forms.Padding(2);
             this.btnListarTodos.Name = "btnListarTodos";
             this.btnListarTodos.Size = new System.Drawing.Size(80, 30);
             this.btnListarTodos.TabIndex = 5;
@@ -115,7 +116,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(188)))), ((int)(((byte)(236)))));
-            this.panel1.Location = new System.Drawing.Point(355, 0);
+            this.panel1.Location = new System.Drawing.Point(354, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(245, 366);
@@ -134,7 +135,7 @@
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormHighscore";
             this.Text = "FormHighscore";
             this.ResumeLayout(false);

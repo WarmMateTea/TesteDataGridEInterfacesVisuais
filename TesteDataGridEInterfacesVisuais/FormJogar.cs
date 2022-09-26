@@ -23,8 +23,8 @@ namespace TesteDataGridEInterfacesVisuais
             BatalhaNaval.InicializarDGV(dgvOponente);
 
             //Inicializar o display dos tabuleiros. O do oponente é coberto por "névoa de guerra".
-            //BatalhaNaval.UpdateDGVFogOfWar(dgvOponente, GlbVar.matrizOponente);
-            BatalhaNaval.UpdateDGVTotal(dgvOponente, GlbVar.matrizOponente);
+            BatalhaNaval.UpdateDGVFogOfWar(dgvOponente, GlbVar.matrizOponente);
+            //BatalhaNaval.UpdateDGVTotal(dgvOponente, GlbVar.matrizOponente);
             BatalhaNaval.UpdateDGVTotal(dgvJogador, GlbVar.matrizJogador);
         }
 

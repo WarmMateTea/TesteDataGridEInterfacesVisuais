@@ -47,7 +47,9 @@ namespace TesteDataGridEInterfacesVisuais
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblResultadoBusca.Text = $"{((Jogador)listBox1.SelectedItem).Nome} - Vitórias:{((Jogador)listBox1.SelectedItem).Vitorias}\n\n";
+            if (listBox1.SelectedIndex == -1)
+                return;
+            lblResultadoBusca.Text = $"{((Jogador)listBox1.SelectedItem).Nome} - Vitórias: {((Jogador)listBox1.SelectedItem).Vitorias}\n\n";
             foreach(Partida partida in ((Jogador)listBox1.SelectedItem).RegistroPartidas)
             {
                 lblResultadoBusca.Text += (partida.Vitoria) ? "Vitória" : "Derrota";
