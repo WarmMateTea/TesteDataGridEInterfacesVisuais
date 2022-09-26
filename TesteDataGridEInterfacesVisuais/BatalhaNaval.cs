@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -94,12 +95,15 @@ namespace TesteDataGridEInterfacesVisuais
                 dgv.Columns[i].Width = 32;
                 dgv.Rows[i].Height = 32;
             }
-
-
+            
+            
             //Seta o background padrao de cada Cell
+            //Coloca os números nos headers
             //vai ser mudado pra chamar a função de sprite mais pra frente [vai nada.]
             for (int i = 0; i < dgv.ColumnCount; i++)
             {
+                dgv.Rows[i].HeaderCell.Value = $"{i + 1}";
+                dgv.Columns[i].HeaderCell.Value = $"{i + 1}";
                 for (int j = 0; j < dgv.RowCount; j++)
                 {
                     dgv.Rows[i].Cells[j].Value = GlbVar.defaultBG;

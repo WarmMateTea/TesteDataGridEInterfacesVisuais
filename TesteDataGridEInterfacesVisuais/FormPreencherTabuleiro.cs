@@ -24,6 +24,7 @@ namespace TesteDataGridEInterfacesVisuais
 
             //Inicializar o DGV (interface visual), a matriz (dados reais) e o dicionário dentro da classe BatalhaNaval
             dgv.Enabled = false;
+            this.MdiParent = null;
             BatalhaNaval.InicializaTabuleiro(ref GlbVar.matrizJogador);
             BatalhaNaval.InicializaTabuleiro(ref GlbVar.matrizOponente);
             BatalhaNaval.InicializarDGV(dgv);

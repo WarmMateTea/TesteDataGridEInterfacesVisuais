@@ -33,7 +33,7 @@ namespace TesteDataGridEInterfacesVisuais
             }
 
             if (!flagJogadorEncontrado)
-                MessageBox.Show("O jogador não foi encontrado", "Jogado não encontrado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("O jogador não foi encontrado", "Jogador não encontrado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void btnListarTodos_Click(object sender, EventArgs e)

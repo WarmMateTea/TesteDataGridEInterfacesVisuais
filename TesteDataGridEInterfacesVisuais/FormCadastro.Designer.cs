@@ -37,62 +37,79 @@
             // 
             // btnCadastrar
             // 
-            this.btnCadastrar.Location = new System.Drawing.Point(223, 101);
+            this.btnCadastrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(188)))), ((int)(((byte)(236)))));
+            this.btnCadastrar.FlatAppearance.BorderSize = 0;
+            this.btnCadastrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCadastrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnCadastrar.Location = new System.Drawing.Point(263, 132);
+            this.btnCadastrar.Margin = new System.Windows.Forms.Padding(2);
             this.btnCadastrar.Name = "btnCadastrar";
-            this.btnCadastrar.Size = new System.Drawing.Size(75, 37);
+            this.btnCadastrar.Size = new System.Drawing.Size(88, 30);
             this.btnCadastrar.TabIndex = 0;
             this.btnCadastrar.Text = "Cadastrar";
-            this.btnCadastrar.UseVisualStyleBackColor = true;
+            this.btnCadastrar.UseVisualStyleBackColor = false;
             this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(31, 101);
+            this.btnLimpar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(188)))), ((int)(((byte)(236)))));
+            this.btnLimpar.FlatAppearance.BorderSize = 0;
+            this.btnLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnLimpar.Location = new System.Drawing.Point(25, 132);
+            this.btnLimpar.Margin = new System.Windows.Forms.Padding(2);
             this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(69, 37);
+            this.btnLimpar.Size = new System.Drawing.Size(81, 30);
             this.btnLimpar.TabIndex = 1;
             this.btnLimpar.Text = "Limpar";
-            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.UseVisualStyleBackColor = false;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 61);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label1.Location = new System.Drawing.Point(21, 87);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 16);
+            this.label1.Size = new System.Drawing.Size(55, 20);
             this.label1.TabIndex = 2;
             this.label1.Text = "Nome:";
             // 
             // txtNomeJogador
             // 
-            this.txtNomeJogador.Location = new System.Drawing.Point(81, 58);
+            this.txtNomeJogador.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtNomeJogador.Location = new System.Drawing.Point(80, 84);
+            this.txtNomeJogador.Margin = new System.Windows.Forms.Padding(2);
             this.txtNomeJogador.Name = "txtNomeJogador";
-            this.txtNomeJogador.Size = new System.Drawing.Size(217, 22);
+            this.txtNomeJogador.Size = new System.Drawing.Size(271, 26);
             this.txtNomeJogador.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label2.Location = new System.Drawing.Point(55, 9);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.label2.Location = new System.Drawing.Point(50, 25);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(239, 29);
+            this.label2.Size = new System.Drawing.Size(267, 31);
             this.label2.TabIndex = 4;
             this.label2.Text = "Cadastro de Jogador";
             // 
             // FormCadastro
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(338, 157);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(228)))), ((int)(((byte)(252)))));
+            this.ClientSize = new System.Drawing.Size(376, 179);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtNomeJogador);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnCadastrar);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormCadastro";
-            this.Text = "FormCadastro";
+            this.Text = "Cadastro";
             this.ResumeLayout(false);
             this.PerformLayout();
 
