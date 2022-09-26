@@ -14,10 +14,13 @@ namespace TesteDataGridEInterfacesVisuais
 {
     public partial class FormJogar : Form
     {
+
+        public Jogo jogo;
         public FormJogar()
         {
+            jogo = GerenciadorDeJogos.obterJogo(GlbVar.jogadorSelecionado.Nome);
             InitializeComponent();
-
+           
             //Inicializar os DGVs
             BatalhaNaval.InicializarDGV(dgvJogador);
             BatalhaNaval.InicializarDGV(dgvOponente);
@@ -48,15 +51,36 @@ namespace TesteDataGridEInterfacesVisuais
 
         private void btnTiro_Click(object sender, EventArgs e)
         {
-            if (txtMultiplo.Text == "")
-            {
+            if (txtMultiplo.Text == String.Empty) {
                 lblAviso.Visible = true;
+                return;
             }
-            else
+            int multiplo = 0;
+            try
             {
+                multiplo= int.Parse(txtMultiplo.Text);
+               
+            }
+            catch (Exception) {
+                lblAviso.Visible = true;
+                return;
+            }
+
                 lblAviso.Visible = false;
+
+                if (jogo.contemTiroJogador(multiplo)) {
+                    MessageBox.Show("Você já inseriu este multiplo");
+                     return;
+                }
+
                 Random rnd = new Random();
                 int tiroAi = rnd.Next(1, 11) * rnd.Next(1, 11);
+
+                 while (jogo.contemTiroIA(tiroAi))
+                  {
+                    tiroAi = rnd.Next(1, 11) * rnd.Next(1, 11);
+                 }
+
                 lblRegistroAtaque.Text = $"Ataque do oponente: {tiroAi.ToString()}";
                 lstboxHistorico.Items.Add($"{GlbVar.jogadorSelecionado.Nome}: {txtMultiplo.Text}");
                 lstboxHistorico.Items.Add($"Oponente: {tiroAi.ToString()}");
@@ -65,20 +89,28 @@ namespace TesteDataGridEInterfacesVisuais
                 {
                     for (int j = 1; j < 11; j++)
                     {
-                        if (i * j == int.Parse(txtMultiplo.Text))
+                        if (i * j == multiplo )
                         {
                             BatalhaNaval.TiroMatriz(new Par(i - 1, j - 1), GlbVar.matrizOponente);
                             BatalhaNaval.UpdateDGVTiroUnico(dgvOponente, GlbVar.matrizOponente, new Par(i - 1, j - 1));
+                           
+                           
                         }
-                        if (i * j == tiroAi)
+                        if (i * j == tiroAi )
                         {
                             //Tiros da AI
                             BatalhaNaval.TiroMatriz(new Par(i - 1, j - 1), GlbVar.matrizJogador);
-                        }
+                        //Adiciona o tiro da IA na lista do jogo
+                        
+                    }
                     }
                 }
+            //Adiciona o tiro da IA na lista do jogo
+            jogo.addTiroIA(tiroAi);
+            //Adiciona o tiro do Jogador na lista do jogo
+            jogo.addTiroJogador(multiplo);
 
-                txtMultiplo.Text = "";
+            txtMultiplo.Text = "";
 
                 //Atira no tabuleiro do jogador e atualiza o display de toda a matriz do jogador.
                 lblVitoria.Text = "O oponente está jogando...";
@@ -100,6 +132,8 @@ namespace TesteDataGridEInterfacesVisuais
                     picboxFimDeJogo.Image = Properties.Resources.fotoBarcoVencedor;
                     picboxFimDeJogo.Visible = true;
                     picboxFimDeJogo.Update();
+                    timer.Enabled = false;
+
                     FimDeJogo(true);
                 }
 
@@ -111,19 +145,22 @@ namespace TesteDataGridEInterfacesVisuais
                     picboxFimDeJogo.Image = Properties.Resources.fotoBarcoPerdedor;
                     picboxFimDeJogo.Visible = true;
                     picboxFimDeJogo.Update();
+                    timer.Enabled = false;
                     FimDeJogo(false);
                 }
-            }    
+      
+        
         }
-
+        
         private void FimDeJogo(bool vitoria)
         {
             GlbVar.jogadorSelecionado.RegistroPartidas.Add(
                 new Partida(tempo, vitoria));
             GlbVar.jogadorSelecionado.Vitorias += (vitoria) ?  1 : 0;
             txtMultiplo.Enabled = btnTiro.Enabled = false;  //desabilita os comandos de jogar, porque quando a pessoa continua jogando continua contando vítorias;
-        }
+            lblRegistroAtaque.Enabled = false; // Desabilita o label de tiro
 
+        }
         private void timer_Tick(object sender, EventArgs e)
         {
             lblTempo.Text = tempo.ToString("HH:mm:ss");

@@ -157,10 +157,17 @@ namespace TesteDataGridEInterfacesVisuais
                     Jogador anon = new Jogador("Anônimo");
                     GlbVar.jogadores.Add(anon);
                     GlbVar.jogadorSelecionado = anon;
+                  
                 }
                 else
-                    GlbVar.jogadorSelecionado = (Jogador)cboxSelecionarUsuario.SelectedItem;    //???
+                {
+                    GlbVar.jogadorSelecionado = (Jogador)cboxSelecionarUsuario.SelectedItem;
+                    
+
+                }
+                    
             }
+
             else      // Usuário anônimo
             {
                 bool flagHaAnonimo = false;
@@ -181,7 +188,7 @@ namespace TesteDataGridEInterfacesVisuais
                 }
             }
 
-
+            GerenciadorDeJogos.addJogo(GlbVar.jogadorSelecionado.Nome);
             bool flag = BatalhaNaval.ChecarCondicoesInicio();
             if (flag)
             {
@@ -206,6 +213,7 @@ namespace TesteDataGridEInterfacesVisuais
             if (rbtnSelecionar.Checked)
             {
                 cboxSelecionarUsuario.Enabled = true;
+                
             }
             else
             {
@@ -213,7 +221,7 @@ namespace TesteDataGridEInterfacesVisuais
             }
         }
 
-        private void PreencheComboBox() ////aAAAAAAAAAAAAAAAAA
+        private void PreencheComboBox() //Colocar os jogadores
         {
             cboxSelecionarUsuario.Items.Clear();
             foreach(Jogador jogador in GlbVar.jogadores)

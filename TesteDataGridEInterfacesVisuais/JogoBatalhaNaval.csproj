@@ -77,8 +77,10 @@
     <Compile Include="FormInicio.Designer.cs">
       <DependentUpon>FormInicio.cs</DependentUpon>
     </Compile>
+    <Compile Include="GerenciadorDeJogos.cs" />
     <Compile Include="GlbVar.cs" />
     <Compile Include="Jogador.cs" />
+    <Compile Include="Jogo.cs" />
     <Compile Include="Par.cs" />
     <Compile Include="Partida.cs" />
     <Compile Include="Program.cs" />

@@ -23,6 +23,7 @@ namespace TesteDataGridEInterfacesVisuais
 
 
 
+
         //Se eu colocar props: só getter
         /// <summary>
         /// O dicionário que eu uso pra ajeitar os botões bonitinho.
