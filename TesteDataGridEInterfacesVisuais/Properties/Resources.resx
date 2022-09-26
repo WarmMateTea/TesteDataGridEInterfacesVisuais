@@ -145,6 +145,9 @@
   <data name="default" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\default.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="mar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mar.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="0barco2V0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\0barco2V0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -157,16 +160,19 @@
   <data name="0barco2V1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\0barco2V1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="0barco2H0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\0barco2H0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="0barco2H2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\0barco2H2.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="1barco2V1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1barco2V1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="0barco2H0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\0barco2H0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="fotoBarcoPerdedor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fotoBarcoPerdedor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mar.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="fotoBarcoVencedor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fotoBarcoVencedor.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -20,7 +20,10 @@ namespace TesteDataGridEInterfacesVisuais
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
             if (txtNomeJogador.Text == String.Empty)
+            {
+                lblNomeAviso.Visible = true;
                 return;
+            }   
             foreach (Jogador jogador in GlbVar.jogadores)
             {
                 if (jogador.Nome == txtNomeJogador.Text)

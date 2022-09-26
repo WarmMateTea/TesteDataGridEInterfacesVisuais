@@ -174,5 +174,11 @@
   <ItemGroup>
     <None Include="Resources\mar.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fotoBarcoPerdedor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fotoBarcoVencedor.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

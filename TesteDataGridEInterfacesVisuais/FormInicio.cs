@@ -64,6 +64,11 @@ namespace TesteDataGridEInterfacesVisuais
         private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBar.Value = e.ProgressPercentage;
+            if (progressBar.Value == 100)
+            {
+                progressBar.Visible = false;
+                label1.Visible = true;
+            }
         }
 
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

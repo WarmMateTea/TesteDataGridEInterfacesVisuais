@@ -33,6 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtNomeJogador = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.lblNomeAviso = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCadastrar
@@ -96,12 +97,25 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Cadastro de Jogador";
             // 
+            // lblNomeAviso
+            // 
+            this.lblNomeAviso.AutoSize = true;
+            this.lblNomeAviso.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomeAviso.ForeColor = System.Drawing.Color.Red;
+            this.lblNomeAviso.Location = new System.Drawing.Point(77, 64);
+            this.lblNomeAviso.Name = "lblNomeAviso";
+            this.lblNomeAviso.Size = new System.Drawing.Size(105, 18);
+            this.lblNomeAviso.TabIndex = 5;
+            this.lblNomeAviso.Text = "Nome inválido!";
+            this.lblNomeAviso.Visible = false;
+            // 
             // FormCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(228)))), ((int)(((byte)(252)))));
             this.ClientSize = new System.Drawing.Size(376, 179);
+            this.Controls.Add(this.lblNomeAviso);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtNomeJogador);
             this.Controls.Add(this.label1);
@@ -122,5 +136,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNomeJogador;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblNomeAviso;
     }
 }

@@ -48,59 +48,80 @@ namespace TesteDataGridEInterfacesVisuais
 
         private void btnTiro_Click(object sender, EventArgs e)
         {
-            Random rnd = new Random();
-            int tiroAi = rnd.Next(1,11) * rnd.Next(1, 11);
-            //Atira no tabuleiro do oponente e revela o status da posição acertada.
-            for (int i = 1; i < 11; i++)
+            if (txtMultiplo.Text == "")
             {
-                for (int j = 1; j < 11; j++)
+                lblAviso.Visible = true;
+            }
+            else
+            {
+                lblAviso.Visible = false;
+                Random rnd = new Random();
+                int tiroAi = rnd.Next(1, 11) * rnd.Next(1, 11);
+                lblRegistroAtaque.Text = $"Ataque do oponente: {tiroAi.ToString()}";
+                lstboxHistorico.Items.Add($"{GlbVar.jogadorSelecionado.Nome}: {txtMultiplo.Text}");
+                lstboxHistorico.Items.Add($"Oponente: {tiroAi.ToString()}");
+                //Atira no tabuleiro do oponente e revela o status da posição acertada.
+                for (int i = 1; i < 11; i++)
                 {
-                    if (i*j == int.Parse(txtMultiplo.Text))
+                    for (int j = 1; j < 11; j++)
                     {
-                        BatalhaNaval.TiroMatriz(new Par(i-1, j-1), GlbVar.matrizOponente);
-                        BatalhaNaval.UpdateDGVTiroUnico(dgvOponente, GlbVar.matrizOponente, new Par(i - 1, j - 1));
-                    }
-                    if (i*j == tiroAi)
-                    {
-                        //Tiros da AI
-                        BatalhaNaval.TiroMatriz(new Par(i-1, j-1), GlbVar.matrizJogador);
+                        if (i * j == int.Parse(txtMultiplo.Text))
+                        {
+                            BatalhaNaval.TiroMatriz(new Par(i - 1, j - 1), GlbVar.matrizOponente);
+                            BatalhaNaval.UpdateDGVTiroUnico(dgvOponente, GlbVar.matrizOponente, new Par(i - 1, j - 1));
+                        }
+                        if (i * j == tiroAi)
+                        {
+                            //Tiros da AI
+                            BatalhaNaval.TiroMatriz(new Par(i - 1, j - 1), GlbVar.matrizJogador);
+                        }
                     }
                 }
-            }
 
-            txtMultiplo.Text = "";
+                txtMultiplo.Text = "";
 
-            //Atira no tabuleiro do jogador e atualiza o display de toda a matriz do jogador.
-            lblVitoria.Text = "O oponente está jogando...";
-            dgvOponente.Invalidate();
-            dgvOponente.Update();
-            lblVitoria.Invalidate();
-            lblVitoria.Update();
-            Thread.Sleep(1500);
+                //Atira no tabuleiro do jogador e atualiza o display de toda a matriz do jogador.
+                lblVitoria.Text = "O oponente está jogando...";
+                dgvOponente.Invalidate();
+                dgvOponente.Update();
+                lblVitoria.Invalidate();
+                lblVitoria.Update();
+                Thread.Sleep(1250);
 
-            BatalhaNaval.UpdateDGVTotal(dgvJogador, GlbVar.matrizJogador);
+                BatalhaNaval.UpdateDGVTotal(dgvJogador, GlbVar.matrizJogador);
 
-            lblVitoria.Text = "Faça sua jogada!";
+                lblVitoria.Text = "Faça sua jogada!";
 
-            if (BatalhaNaval.ChecarFimDeJogo(GlbVar.matrizOponente))
-            {
-                lblVitoria.Text = "Você venceu!";
-                FimDeJogo(true);
-            }
-                
-            else if (BatalhaNaval.ChecarFimDeJogo(GlbVar.matrizJogador))
-            {
-                lblVitoria.Text = "Derrota!!!!!!!!";
-                FimDeJogo(false);
-            }
-                
+                if (BatalhaNaval.ChecarFimDeJogo(GlbVar.matrizOponente))
+                {
+                    lblVitoria.Text = "Você venceu!";
+                    lblVitoria.ForeColor = Color.Green;
+                    lblVitoria.Update();
+                    picboxFimDeJogo.Image = Properties.Resources.fotoBarcoVencedor;
+                    picboxFimDeJogo.Visible = true;
+                    picboxFimDeJogo.Update();
+                    FimDeJogo(true);
+                }
+
+                else if (BatalhaNaval.ChecarFimDeJogo(GlbVar.matrizJogador))
+                {
+                    lblVitoria.Text = "Derrota!!!!!!!!";
+                    lblVitoria.ForeColor = Color.Red;
+                    lblVitoria.Update();
+                    picboxFimDeJogo.Image = Properties.Resources.fotoBarcoPerdedor;
+                    picboxFimDeJogo.Visible = true;
+                    picboxFimDeJogo.Update();
+                    FimDeJogo(false);
+                }
+            }    
         }
 
         private void FimDeJogo(bool vitoria)
         {
             GlbVar.jogadorSelecionado.RegistroPartidas.Add(
                 new Partida(tempo, vitoria));
-            GlbVar.jogadorSelecionado.Vitorias += (vitoria) ?  1 : 0 ;
+            GlbVar.jogadorSelecionado.Vitorias += (vitoria) ?  1 : 0;
+            txtMultiplo.Enabled = btnTiro.Enabled = false;  //desabilita os comandos de jogar, porque quando a pessoa continua jogando continua contando vítorias;
         }
 
         private void timer_Tick(object sender, EventArgs e)

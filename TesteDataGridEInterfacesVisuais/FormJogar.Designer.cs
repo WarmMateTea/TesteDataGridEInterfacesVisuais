@@ -40,8 +40,15 @@
             this.dgvJogador = new System.Windows.Forms.DataGridView();
             this.dgvOponente = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.picboxFimDeJogo = new System.Windows.Forms.PictureBox();
+            this.lblAviso = new System.Windows.Forms.Label();
+            this.lblRegistroAtaque = new System.Windows.Forms.Label();
+            this.lstboxHistorico = new System.Windows.Forms.ListBox();
+            this.lblHistórico = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJogador)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOponente)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picboxFimDeJogo)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -70,7 +77,7 @@
             this.btnTiro.FlatAppearance.BorderSize = 0;
             this.btnTiro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTiro.Location = new System.Drawing.Point(535, 356);
-            this.btnTiro.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnTiro.Margin = new System.Windows.Forms.Padding(2);
             this.btnTiro.Name = "btnTiro";
             this.btnTiro.Size = new System.Drawing.Size(56, 27);
             this.btnTiro.TabIndex = 7;
@@ -98,7 +105,7 @@
             // txtMultiplo
             // 
             this.txtMultiplo.Location = new System.Drawing.Point(543, 323);
-            this.txtMultiplo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMultiplo.Margin = new System.Windows.Forms.Padding(2);
             this.txtMultiplo.Name = "txtMultiplo";
             this.txtMultiplo.ShortcutsEnabled = false;
             this.txtMultiplo.Size = new System.Drawing.Size(41, 20);
@@ -136,7 +143,7 @@
             this.dgvJogador.ColumnHeadersHeight = 32;
             this.dgvJogador.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvJogador.Location = new System.Drawing.Point(50, 65);
-            this.dgvJogador.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvJogador.Margin = new System.Windows.Forms.Padding(2);
             this.dgvJogador.MultiSelect = false;
             this.dgvJogador.Name = "dgvJogador";
             this.dgvJogador.ReadOnly = true;
@@ -156,7 +163,7 @@
             this.dgvOponente.ColumnHeadersHeight = 32;
             this.dgvOponente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvOponente.Location = new System.Drawing.Point(703, 65);
-            this.dgvOponente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvOponente.Margin = new System.Windows.Forms.Padding(2);
             this.dgvOponente.MultiSelect = false;
             this.dgvOponente.Name = "dgvOponente";
             this.dgvOponente.ReadOnly = true;
@@ -170,18 +177,72 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(228)))), ((int)(((byte)(252)))));
+            this.panel1.Controls.Add(this.picboxFimDeJogo);
+            this.panel1.Controls.Add(this.lblAviso);
             this.panel1.Location = new System.Drawing.Point(443, 55);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(241, 376);
             this.panel1.TabIndex = 17;
             // 
+            // picboxFimDeJogo
+            // 
+            this.picboxFimDeJogo.Location = new System.Drawing.Point(25, 48);
+            this.picboxFimDeJogo.Name = "picboxFimDeJogo";
+            this.picboxFimDeJogo.Size = new System.Drawing.Size(191, 191);
+            this.picboxFimDeJogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picboxFimDeJogo.TabIndex = 1;
+            this.picboxFimDeJogo.TabStop = false;
+            this.picboxFimDeJogo.Visible = false;
+            // 
+            // lblAviso
+            // 
+            this.lblAviso.AutoSize = true;
+            this.lblAviso.ForeColor = System.Drawing.Color.Red;
+            this.lblAviso.Location = new System.Drawing.Point(77, 340);
+            this.lblAviso.Name = "lblAviso";
+            this.lblAviso.Size = new System.Drawing.Size(90, 13);
+            this.lblAviso.TabIndex = 0;
+            this.lblAviso.Text = "Insira um número!";
+            this.lblAviso.Visible = false;
+            // 
+            // lblRegistroAtaque
+            // 
+            this.lblRegistroAtaque.AutoSize = true;
+            this.lblRegistroAtaque.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegistroAtaque.Location = new System.Drawing.Point(46, 19);
+            this.lblRegistroAtaque.Name = "lblRegistroAtaque";
+            this.lblRegistroAtaque.Size = new System.Drawing.Size(182, 22);
+            this.lblRegistroAtaque.TabIndex = 18;
+            this.lblRegistroAtaque.Text = "Ataque do oponente: ";
+            // 
+            // lstboxHistorico
+            // 
+            this.lstboxHistorico.FormattingEnabled = true;
+            this.lstboxHistorico.Location = new System.Drawing.Point(1091, 65);
+            this.lstboxHistorico.Name = "lstboxHistorico";
+            this.lstboxHistorico.Size = new System.Drawing.Size(181, 355);
+            this.lstboxHistorico.TabIndex = 19;
+            // 
+            // lblHistórico
+            // 
+            this.lblHistórico.AutoSize = true;
+            this.lblHistórico.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHistórico.Location = new System.Drawing.Point(1142, 19);
+            this.lblHistórico.Name = "lblHistórico";
+            this.lblHistórico.Size = new System.Drawing.Size(80, 22);
+            this.lblHistórico.TabIndex = 20;
+            this.lblHistórico.Text = "Histórico";
+            // 
             // FormJogar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(188)))), ((int)(((byte)(236)))));
-            this.ClientSize = new System.Drawing.Size(1138, 457);
+            this.ClientSize = new System.Drawing.Size(1284, 457);
+            this.Controls.Add(this.lblHistórico);
+            this.Controls.Add(this.lstboxHistorico);
+            this.Controls.Add(this.lblRegistroAtaque);
             this.Controls.Add(this.dgvOponente);
             this.Controls.Add(this.dgvJogador);
             this.Controls.Add(this.lblTempo);
@@ -192,11 +253,14 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormJogar";
             this.Text = "FormJogar";
             ((System.ComponentModel.ISupportInitialize)(this.dgvJogador)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOponente)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picboxFimDeJogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,5 +278,10 @@
         private System.Windows.Forms.DataGridView dgvJogador;
         private System.Windows.Forms.DataGridView dgvOponente;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblAviso;
+        private System.Windows.Forms.PictureBox picboxFimDeJogo;
+        private System.Windows.Forms.Label lblRegistroAtaque;
+        private System.Windows.Forms.ListBox lstboxHistorico;
+        private System.Windows.Forms.Label lblHistórico;
     }
 }
