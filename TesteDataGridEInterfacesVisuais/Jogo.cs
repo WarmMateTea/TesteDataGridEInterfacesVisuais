@@ -10,15 +10,22 @@ namespace TesteDataGridEInterfacesVisuais
     {
       private List<int>tirosIA = new List<int>();
       private List<int> tirosJogador = new List<int>();
-      private string nomeJogador;
-        public string NomeJogador { get => nomeJogador; }
-       public  Jogo(string nomeJogador)
+      private Jogador jogador;
+      public static TabuleiroCasa[,] matrizJogador = new TabuleiroCasa[10, 10];
+
+        //Se eu colocar props: só getter
+        /// <summary>
+        /// O tabuleiro do oponente (computador)
+        /// </summary>
+      public static TabuleiroCasa[,] matrizOponente = new TabuleiroCasa[10, 10];
+
+        public Jogador Jogador{ get => jogador; }
+       public  Jogo(Jogador jogador)
         {
-            this.nomeJogador = nomeJogador;
+            this.jogador = jogador;
 
         }
 
-     
 
         public void addTiroIA(int multiplo) { 
             if(tirosIA.Contains(multiplo)) return;

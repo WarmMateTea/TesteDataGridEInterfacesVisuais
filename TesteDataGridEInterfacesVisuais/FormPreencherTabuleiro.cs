@@ -17,10 +17,11 @@ namespace TesteDataGridEInterfacesVisuais
 {
     public partial class FormPreencherTabuleiro : Form
     {
+      
         public FormPreencherTabuleiro()
         {
             InitializeComponent();
-
+           
 
             //Inicializar o DGV (interface visual), a matriz (dados reais) e o dicionário dentro da classe BatalhaNaval
             dgv.Enabled = false;
@@ -150,54 +151,20 @@ namespace TesteDataGridEInterfacesVisuais
         /// <param name="e"></param>
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if (rbtnSelecionar.Checked)
-            {
-                if (cboxSelecionarUsuario.SelectedItem == null)
-                {
-                    Jogador anon = new Jogador("Anônimo");
-                    GlbVar.jogadores.Add(anon);
-                    GlbVar.jogadorSelecionado = anon;
-                  
-                }
-                else
-                {
-                    GlbVar.jogadorSelecionado = (Jogador)cboxSelecionarUsuario.SelectedItem;
-                    
 
-                }
-                    
-            }
+            Jogador jogador = carregarJogador();
 
-            else      // Usuário anônimo
-            {
-                bool flagHaAnonimo = false;
-                foreach(Jogador jogador in GlbVar.jogadores)
-                {
-                    if (jogador.Nome == "Anônimo")
-                    {
-                        GlbVar.jogadorSelecionado = jogador;
-                        flagHaAnonimo = true;
-                        break;
-                    }
-                }
-                if (!flagHaAnonimo)
-                {
-                    Jogador anon = new Jogador("Anônimo");
-                    GlbVar.jogadores.Add(anon);
-                    GlbVar.jogadorSelecionado = anon;
-                }
-            }
-
-            GerenciadorDeJogos.addJogo(GlbVar.jogadorSelecionado.Nome);
             bool flag = BatalhaNaval.ChecarCondicoesInicio();
             if (flag)
             {
                 BatalhaNaval.PreencheTabuleiroOponente(ref GlbVar.matrizOponente);
+                //GerenciadorDeJogos.addJogo(jogador);
 
-                FormJogar formJogar = new FormJogar();
+                FormJogar formJogar = new FormJogar(jogador);
+          
                 this.Hide();
                 formJogar.ShowDialog();
-                this.Close();           //?
+                this.Close();         
                 //começar jogo :)
             }
             else
@@ -205,6 +172,52 @@ namespace TesteDataGridEInterfacesVisuais
                 MessageBox.Show("Coloque todos os seus barcos!", "Ainda há barcos!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 //não começar jogo :(
             }
+
+
+        }
+
+        //Método responsável por carregar e criar um jogo
+        private Jogador carregarJogador()
+        {
+            //Verifica se é um usuario anonimo
+            if (rbtnAnonimo.Checked)
+            {
+                if (!GerenciadorDeJogadores.contemJogador("Anônimo"))
+                {
+                    Jogador anonimo = new Jogador("Anônimo");
+                  
+                    GerenciadorDeJogos.addJogo(anonimo);
+                    return anonimo;
+                }
+
+                return GerenciadorDeJogadores.obterJogador("Anônimo");
+            }
+
+            //Verifica se tem algo selecionado no combobox dos jogadores
+            if (cboxSelecionarUsuario.SelectedItem == null)
+            {
+
+                if (!GerenciadorDeJogadores.contemJogador("Anônimo"))
+                {
+                    Jogador jogadorAnonimo = new Jogador("Anônimo");
+                   GerenciadorDeJogos.addJogo(new Jogador("Anônimo"));
+                    return jogadorAnonimo;
+                }
+
+                return GerenciadorDeJogadores.obterJogador("Anônimo");
+            }
+
+            //Se tiver algum jogador no combobox ele adiciona ao jogo
+            //Caso não existir
+
+            Jogador jogador = (Jogador)cboxSelecionarUsuario.SelectedItem;
+            if (!GerenciadorDeJogos.jogadorEmPartida(jogador.Nome))
+            {
+                GerenciadorDeJogos.addJogo((Jogador)cboxSelecionarUsuario.SelectedItem);
+               
+            }
+            return jogador;
+           
         }
 
         private void rbtnSelecaoUsuario_CheckedChanged(object sender, EventArgs e)
@@ -224,7 +237,7 @@ namespace TesteDataGridEInterfacesVisuais
         private void PreencheComboBox() //Colocar os jogadores
         {
             cboxSelecionarUsuario.Items.Clear();
-            foreach(Jogador jogador in GlbVar.jogadores)
+            foreach(Jogador jogador in GerenciadorDeJogadores.Jogadores)
             {
                 cboxSelecionarUsuario.Items.Add(jogador);
             }

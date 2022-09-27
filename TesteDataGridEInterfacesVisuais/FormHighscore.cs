@@ -20,26 +20,22 @@ namespace TesteDataGridEInterfacesVisuais
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
-            bool flagJogadorEncontrado = false;
 
-            foreach (Jogador jogador in GlbVar.jogadores)
+           Jogador jogador =  GerenciadorDeJogadores.obterJogador(txtNomeBusca.Text);
+
+            if(jogador != null)
             {
-                if (txtNomeBusca.Text == jogador.Nome)
-                {
-                    listBox1.Items.Add(jogador);
-                    flagJogadorEncontrado = true;
-                    break;
-                }
+                listBox1.Items.Add(jogador);
+                return;
             }
 
-            if (!flagJogadorEncontrado)
-                MessageBox.Show("O jogador não foi encontrado", "Jogador não encontrado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+             MessageBox.Show("O jogador não foi encontrado", "Jogador não encontrado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void btnListarTodos_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
-            foreach (Jogador jogador in GlbVar.jogadores)
+            foreach (Jogador jogador in GerenciadorDeJogadores.Jogadores)
             {
                 listBox1.Items.Add(jogador);
             }

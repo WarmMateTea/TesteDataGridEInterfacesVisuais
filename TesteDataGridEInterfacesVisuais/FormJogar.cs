@@ -16,9 +16,12 @@ namespace TesteDataGridEInterfacesVisuais
     {
 
         public Jogo jogo;
-        public FormJogar()
+        private static Jogador jogador;
+        public Jogador Jogador { get => jogador; set => jogador = value; }
+        public FormJogar(Jogador jog)
         {
-            jogo = GerenciadorDeJogos.obterJogo(GlbVar.jogadorSelecionado.Nome);
+            jogador = jog;
+            jogo = GerenciadorDeJogos.obterJogo(jogador.Nome);
             InitializeComponent();
            
             //Inicializar os DGVs
@@ -82,7 +85,7 @@ namespace TesteDataGridEInterfacesVisuais
                  }
 
                 lblRegistroAtaque.Text = $"Ataque do oponente: {tiroAi.ToString()}";
-                lstboxHistorico.Items.Add($"{GlbVar.jogadorSelecionado.Nome}: {txtMultiplo.Text}");
+                lstboxHistorico.Items.Add($"{jogador.Nome}: {txtMultiplo.Text}");
                 lstboxHistorico.Items.Add($"Oponente: {tiroAi.ToString()}");
                 //Atira no tabuleiro do oponente e revela o status da posição acertada.
                 for (int i = 1; i < 11; i++)
@@ -154,9 +157,9 @@ namespace TesteDataGridEInterfacesVisuais
         
         private void FimDeJogo(bool vitoria)
         {
-            GlbVar.jogadorSelecionado.RegistroPartidas.Add(
+            jogador.RegistroPartidas.Add(
                 new Partida(tempo, vitoria));
-            GlbVar.jogadorSelecionado.Vitorias += (vitoria) ?  1 : 0;
+           jogo.Jogador.Vitorias += (vitoria) ?  1 : 0;
             txtMultiplo.Enabled = btnTiro.Enabled = false;  //desabilita os comandos de jogar, porque quando a pessoa continua jogando continua contando vítorias;
             lblRegistroAtaque.Enabled = false; // Desabilita o label de tiro
 

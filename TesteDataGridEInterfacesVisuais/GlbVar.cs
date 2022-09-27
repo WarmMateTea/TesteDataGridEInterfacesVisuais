@@ -14,14 +14,6 @@ namespace TesteDataGridEInterfacesVisuais
     /// </summary>
     public static class GlbVar
     {
-        //Se props: só getter;
-        /// <summary>
-        /// Lista de jogadores
-        /// </summary>
-        public static List<Jogador> jogadores = new List<Jogador>();
-        public static Jogador jogadorSelecionado;
-
-
 
 
         //Se eu colocar props: só getter

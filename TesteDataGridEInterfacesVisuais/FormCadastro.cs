@@ -23,16 +23,16 @@ namespace TesteDataGridEInterfacesVisuais
             {
                 lblNomeAviso.Visible = true;
                 return;
-            }   
-            foreach (Jogador jogador in GlbVar.jogadores)
-            {
-                if (jogador.Nome == txtNomeJogador.Text)
-                {
-                    MessageBox.Show("O jogador já está cadastrado!", "Cadastro duplicado", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
             }
-            GlbVar.jogadores.Add(new Jogador(txtNomeJogador.Text));
+
+            if (GerenciadorDeJogadores.contemJogador(txtNomeJogador.Text))
+            {
+                MessageBox.Show("O jogador já está cadastrado!", "Cadastro duplicado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+
+            }
+
+            GerenciadorDeJogadores.addJogador(new Jogador(txtNomeJogador.Text));
             MessageBox.Show("O jogador foi cadastrado com sucesso!", "Cadastro bem-sucedido!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }

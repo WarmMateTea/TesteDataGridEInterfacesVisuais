@@ -11,15 +11,15 @@ namespace TesteDataGridEInterfacesVisuais
     {
         private static List<Jogo> jogos = new List<Jogo>();
 
-        public static void addJogo(String nomeJogador)
+        public static void addJogo(Jogador jogador)
         {
-            if (jogadorEmPartida(nomeJogador))
+            if (jogadorEmPartida(jogador.Nome))
             {
                 return;
             }
-            Jogo jogo = new Jogo(nomeJogador);
+            Jogo jogo = new Jogo(jogador);
             jogos.Add(jogo);
-         
+
         }
 
 
@@ -38,7 +38,7 @@ namespace TesteDataGridEInterfacesVisuais
             Jogo jogoAchado;
             foreach(Jogo jogo in jogos)
             {
-                if(jogo.NomeJogador == nomeJogador)
+                if(jogo.Jogador.Nome == nomeJogador)
                 {
                     jogoAchado = jogo;
                     return jogoAchado;
